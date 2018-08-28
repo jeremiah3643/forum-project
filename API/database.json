@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "username": "jeremiah",
+      "email": "jeremiah@me.com",
+      "password": "password",
+      "id": 1
+    },
+    {
+      "username": "jack",
+      "email": "jack@me.com",
+      "password": "password",
+      "id": 2
+    }
+  ],
+  "threads": [
+    {
+      "title": "testing",
+      "message": "testing!!!",
+      "threadAuthorName": "jeremiah",
+      "threadAuthorId": 1,
+      "id": 1
+    },
+    {
+      "title": "testing",
+      "message": "testing to see if form clears",
+      "threadAuthorName": "jeremiah",
+      "threadAuthorId": 1,
+      "id": 2
+    },
+    {
+      "title": "testing",
+      "message": "testing alert message",
+      "threadAuthorName": "jeremiah",
+      "threadAuthorId": 1,
+      "id": 3
+    }
+  ],
+  "posts": []
+}
