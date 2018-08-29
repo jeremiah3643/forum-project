@@ -15,26 +15,36 @@
   ],
   "threads": [
     {
-      "title": "testing",
-      "message": "testing!!!",
+      "title": "1 post",
+      "message": "first post",
       "threadAuthorName": "jeremiah",
       "threadAuthorId": 1,
+      "timeStamp": 1535568293455,
       "id": 1
     },
     {
-      "title": "testing",
-      "message": "testing to see if form clears",
+      "title": "2nd post",
+      "message": "2nd post!!!\n",
       "threadAuthorName": "jeremiah",
       "threadAuthorId": 1,
+      "timeStamp": 1535568314109,
       "id": 2
     },
     {
-      "title": "testing",
-      "message": "testing alert message",
+      "title": "hello",
+      "message": "hello!!",
       "threadAuthorName": "jeremiah",
       "threadAuthorId": 1,
+      "timeStamp": 1535568499369,
       "id": 3
     }
   ],
-  "posts": []
+  "posts": [
+    {
+      "message": "this is a test inside",
+      "id": 1,
+      "threadId": 1,
+      "author": "jeremiah"
+    }
+  ]
 }

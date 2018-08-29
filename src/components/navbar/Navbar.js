@@ -6,7 +6,8 @@ export default class Navbar extends Component {
             let oldInfo = JSON.parse(sessionStorage.getItem("userInfo"))
             let update = {
                 userId: oldInfo.userId,
-                currentView: view
+                currentView: view,
+                username: oldInfo.username
             }
             sessionStorage.setItem("userInfo", JSON.stringify(update))
         }
@@ -44,7 +45,6 @@ export default class Navbar extends Component {
     }
 
     LoginorLogoff = () => {
-        let userId = sessionStorage.getItem("userInfo")
         if (this.props.activeUser === "" || this.props.currentView === "logout") {
             return <a onClick={this.login} href="login">Login</a>
         }

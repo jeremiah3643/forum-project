@@ -23,10 +23,11 @@ export default class Login extends Component {
             .then(r => r.json())
             .then(user => {
                 if (user.length) {
-                    this.props.setActiveUser(user[0].id,user[0].username)
+                    this.props.setActiveUser(user[0].id, user[0].username)
                     let userinfo = {
                         userId: user[0].id,
-                        currentView:"homepage"
+                        currentView: "homepage",
+                        username: user[0].username
                     }
                     sessionStorage.setItem("userInfo", JSON.stringify(userinfo))
                     alert("You have successfully logged in!")

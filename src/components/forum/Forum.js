@@ -6,7 +6,7 @@ export default class Forum extends Component {
         newThread: false,
         threadTitle: "",
         threadMessage: "",
-        userId: ""
+        userId: "",
     }
     load = function () {
         if (this.props.activeUser === null) {
@@ -63,6 +63,7 @@ export default class Forum extends Component {
                         message: this.state.threadMessage,
                         threadAuthorName: response[0].username,
                         threadAuthorId: this.state.userId,
+                        timeStamp: Date.now(),
 
                     })
                 })
@@ -71,13 +72,14 @@ export default class Forum extends Component {
             .then(
                 alert("Successful Post!"),
                 this.setState({ newThread: false }))
+
     }
     render() {
         return (
             <div>
                 <button onClick={this.createThread}>Start A Thread!</button>
                 {this.threadForm()}
-                <section><ShowThread /></section>
+                <section><ShowThread showView={this.props.showView} newThread={this.state.newThread} currentView={this.props.currentView} /></section>
 
             </div>
         )

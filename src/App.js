@@ -79,8 +79,6 @@ class App extends Component {
 
 
 
-
-
     else if (this.state.currentView === "homepage") {
       return (
         <HomePage currentView={this.state.currentView} activeUsername={this.state.activeUsername} />

@@ -1,44 +1,70 @@
 import React, { Component } from 'react';
+import ThreadCard from './cardcomponents/ThreadCards';
+import InsideThread from './InsideThread';
 
 export default class ShowThread extends Component {
+    state = {
+        threadPost: false,
+        threads: [],
+        dataLoaded: false,
+        page: "",
+        clicked:false
+    }
+    componentDidMount() {
+        this.displayThread()
+    }
+
 
 
     loadThreads = () => {
 
         return fetch(`http://localhost:8088/threads`)
             .then(r => r.json())
+
             .then(loadedThreads => {
-                let thread = ""
-                for (let i = 0; i < loadedThreads.length; i++) {
-                    const element = loadedThreads[i];
-                    thread += this.threadLayout(element)
-                }
+                let thread = loadedThreads.reverse()
                 return thread
-            })
+            }
+            )
     }
-    threadLayout = (element) => {
-        return `<div>
-            <h3>${element.title}</h3>
-            <p>${element.message}</p>
-            <footer>Author: ${element.threadAuthorName}</footer>
-        </div>`
+
+    enterThread = (e) => {
+        console.log(e.target.parentNode.id)
+        let pagination = e.target.parentNode.id
+        this.setState({
+            page: pagination,
+            clicked:true
+        })
     }
+
     displayThread = () => {
         this.loadThreads()
             .then(thread => {
-                document.querySelector("#threadBox").innerHTML = thread
+                this.setState({
+                    threads: thread,
+                    dataLoaded: true
+                })
+
             })
     }
-    // componentDidMount() {
-    //     this.loadThreads()
-    // }
 
     render() {
-        return (
-            <div id="threadBox">
-                {this.displayThread()}
-            </div>
-        )
+
+        const newThreads = this.state.threads
+        {
+            if (this.state.clicked) {
+                return <div><InsideThread page={this.state.page} /></div>
+            }
+            else if (this.state.dataLoaded) {
+                return <div id="threadBox">
+                    {newThreads.map(thread =>
+                        <ThreadCard key={thread.id} thread={thread} enterThread={this.enterThread} />)}
+                </div>
+            }
+            else {
+                return <div>Loading</div>
+            }
+        }
     }
 
 }
