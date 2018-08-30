@@ -1,26 +1,15 @@
 import React, { Component } from 'react';
 
 export default class ThreadTitle extends Component {
-    loadTitle = () => {
-        let threadId = this.props.page
-       return fetch(`http://localhost:8088/threads/${threadId}`)
-            .then(r => r.json())
-    }
-    showTitle = () => {
-        this.loadTitle().then(
-            thread => {
-                return <div>
-                    <h3>${thread.title}</h3>
-                    <p>${thread.message}</p>
-                    <footer>Author: ${thread.threadAuthorName}</footer>
-                </div>
-            }
-        )
-    }
-    render() {
 
+    render() {
+        
         return (
-            <div>{this.showTitle()}</div>
+            <div key={this.props.thread.id}>
+                <h2>{this.props.thread.title}</h2>
+                <h3>{this.props.thread.message}</h3>
+                <footer>Author: {this.props.thread.threadAuthorName}</footer>
+            </div>
 
         )
     }

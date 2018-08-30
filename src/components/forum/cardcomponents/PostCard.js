@@ -5,6 +5,7 @@ export default class PostCard extends Component {
         return (
             <div key={this.props.post.id} id={this.props.post.id}>
                 <p>{this.props.post.message}</p>
+                <footer>{this.props.post.postAuthorName}</footer>
 
             </div>
         )

@@ -15,36 +15,84 @@
   ],
   "threads": [
     {
-      "title": "1 post",
-      "message": "first post",
+      "title": "testing!",
+      "message": "hello!",
       "threadAuthorName": "jeremiah",
-      "threadAuthorId": 1,
-      "timeStamp": 1535568293455,
+      "timeStamp": 1535651967741,
       "id": 1
     },
     {
-      "title": "2nd post",
-      "message": "2nd post!!!\n",
+      "title": "Thread",
+      "message": "To make sure posts arent in all threads",
       "threadAuthorName": "jeremiah",
-      "threadAuthorId": 1,
-      "timeStamp": 1535568314109,
+      "timeStamp": 1535653130965,
       "id": 2
-    },
-    {
-      "title": "hello",
-      "message": "hello!!",
-      "threadAuthorName": "jeremiah",
-      "threadAuthorId": 1,
-      "timeStamp": 1535568499369,
-      "id": 3
     }
   ],
   "posts": [
     {
-      "message": "this is a test inside",
-      "id": 1,
-      "threadId": 1,
-      "author": "jeremiah"
+      "message": "testing as a post under thread",
+      "postAuthorName": "jeremiah",
+      "threadAuthorId": 1,
+      "threadId": "1",
+      "timeStamp": 1535653097466,
+      "id": 1
+    },
+    {
+      "message": "hello!",
+      "postAuthorName": "jeremiah",
+      "threadAuthorId": 1,
+      "threadId": "2",
+      "timeStamp": 1535653148163,
+      "id": 2
+    },
+    {
+      "message": "testing clock",
+      "postAuthorName": "jeremiah",
+      "threadAuthorId": 1,
+      "threadId": "2",
+      "timeStamp": 1535653206856,
+      "id": 3
+    },
+    {
+      "message": "testing clock again",
+      "postAuthorName": "jeremiah",
+      "threadAuthorId": 1,
+      "threadId": "2",
+      "timeStamp": 1535653247977,
+      "id": 4
+    },
+    {
+      "message": "testing reload",
+      "postAuthorName": "jeremiah",
+      "threadAuthorId": 1,
+      "threadId": "2",
+      "timeStamp": 1535653291556,
+      "id": 5
+    },
+    {
+      "message": "testing author\n",
+      "postAuthorName": "jeremiah",
+      "postAuthorId": 1,
+      "threadId": "2",
+      "timeStamp": 1535653360200,
+      "id": 6
+    },
+    {
+      "message": "hello!",
+      "postAuthorName": "jeremiah",
+      "postAuthorId": 1,
+      "threadId": "2",
+      "timeStamp": 1535653428850,
+      "id": 7
+    },
+    {
+      "message": "hello",
+      "postAuthorName": "jeremiah",
+      "postAuthorId": 1,
+      "threadId": "2",
+      "timeStamp": 1535653484490,
+      "id": 8
     }
   ]
 }
