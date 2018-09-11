@@ -93,12 +93,11 @@ export default class InsideThread extends Component {
         clearInterval(this.timerID);
     }
     render() {
-
         const postList = this.state.posts
         const titleThread = this.state.info
         return <section>
-            <div>
                 <button onClick={this.props.backButton}>Back</button>
+            <div>
                 <div id="threadBox">
                     {titleThread.map(thread =>
                         <ThreadTitle key={thread.id} thread={thread} />)}

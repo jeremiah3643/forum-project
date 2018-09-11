@@ -15,18 +15,12 @@
   ],
   "threads": [
     {
-      "title": "testing!",
-      "message": "hello!",
+      "title": "testing agiain!",
+      "message": "does user Id get posted",
       "threadAuthorName": "jeremiah",
-      "timeStamp": 1535651967741,
-      "id": 1
-    },
-    {
-      "title": "Thread",
-      "message": "To make sure posts arent in all threads",
-      "threadAuthorName": "jeremiah",
-      "timeStamp": 1535653130965,
-      "id": 2
+      "threadAuthorId": 1,
+      "timeStamp": 1536698809589,
+      "id": 4
     }
   ],
   "posts": [
@@ -93,6 +87,30 @@
       "threadId": "2",
       "timeStamp": 1535653484490,
       "id": 8
+    },
+    {
+      "message": "hello!",
+      "postAuthorName": "jeremiah",
+      "postAuthorId": 1,
+      "threadId": "1",
+      "timeStamp": 1536697262321,
+      "id": 9
+    },
+    {
+      "message": "YAY!",
+      "postAuthorName": "jeremiah",
+      "postAuthorId": 1,
+      "threadId": "4",
+      "timeStamp": 1536698938572,
+      "id": 10
+    },
+    {
+      "message": "It worked!",
+      "postAuthorName": "jeremiah",
+      "postAuthorId": 1,
+      "threadId": "4",
+      "timeStamp": 1536698948301,
+      "id": 11
     }
   ]
 }

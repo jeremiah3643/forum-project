@@ -3,21 +3,20 @@ import ThreadCard from './cardcomponents/ThreadCards';
 import InsideThread from './InsideThread';
 
 export default class ShowThread extends Component {
-    constructor(props) {
-        super(props)
 
-        this.state = {
-            threadPost: false,
-            threads: [],
-            dataLoaded: false,
-            page: "",
-            clicked: false,
-            threadTitle: "",
-            threadMessage: "",
-            newThread: false,
-            date: new Date()
-        }
+
+    state = {
+        threadPost: false,
+        threads: [],
+        dataLoaded: false,
+        page: "",
+        clicked: false,
+        threadTitle: "",
+        threadMessage: "",
+        newThread: false,
+        date: new Date()
     }
+
     componentDidMount() {
         this.timerID = setInterval(
             () => this.tick(),
@@ -73,7 +72,7 @@ export default class ShowThread extends Component {
                         title: this.state.threadTitle,
                         message: this.state.threadMessage,
                         threadAuthorName: response[0].username,
-                        threadAuthorId: this.state.userId,
+                        threadAuthorId: user,
                         timeStamp: Date.now(),
 
                     })
@@ -101,8 +100,7 @@ export default class ShowThread extends Component {
             </section>
         }
     }
-    backButton = (e) => {
-        
+    backButton = () => {
         this.setState({
             clicked: false
         })
@@ -127,7 +125,7 @@ export default class ShowThread extends Component {
         const newThreads = this.state.threads
         {
             if (this.state.clicked) {
-                return <div><InsideThread clicked={this.state.clicked} backbutton={this.backButton} userId={this.props.userId} page={this.state.page} /></div>
+                return <div><InsideThread backButton={this.backButton} userId={this.props.userId} page={this.state.page} /></div>
             }
             else if (this.state.dataLoaded) {
                 return <div id="threadBox">
