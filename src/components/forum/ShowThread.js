@@ -101,6 +101,13 @@ export default class ShowThread extends Component {
             </section>
         }
     }
+    backButton = (e) => {
+        
+        this.setState({
+            clicked: false
+        })
+    }
+
     threadChange = (event) => {
         let stateToChange = {}
         stateToChange[event.target.id] = event.target.value
@@ -120,15 +127,15 @@ export default class ShowThread extends Component {
         const newThreads = this.state.threads
         {
             if (this.state.clicked) {
-                return <div><InsideThread userId={this.props.userId} page={this.state.page} /></div>
+                return <div><InsideThread clicked={this.state.clicked} backbutton={this.backButton} userId={this.props.userId} page={this.state.page} /></div>
             }
             else if (this.state.dataLoaded) {
                 return <div id="threadBox">
                     <button onClick={this.createThread}>Start A Thread!</button>
                     {this.threadForm()}
                     {newThreads.map(thread =>
-                        <ThreadCard key={thread.id}  thread={thread} newThread={this.state.newThread} enterThread={this.enterThread} />)}
-            </div>
+                        <ThreadCard key={thread.id} thread={thread} newThread={this.state.newThread} enterThread={this.enterThread} />)}
+                </div>
             }
             else {
                 return <div>Loading</div>

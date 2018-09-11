@@ -98,6 +98,7 @@ export default class InsideThread extends Component {
         const titleThread = this.state.info
         return <section>
             <div>
+                <button onClick={this.props.backButton}>Back</button>
                 <div id="threadBox">
                     {titleThread.map(thread =>
                         <ThreadTitle key={thread.id} thread={thread} />)}
