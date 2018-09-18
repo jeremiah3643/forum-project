@@ -9,9 +9,39 @@ export default class InsideThread extends Component {
         info: [],
         postMessage: "",
         newPost: false,
-        date: new Date()
+        date: new Date(),
+        edit: false,
+        editInfo: "",
+        editId:""
+    }
+    inputChange = (event) => {
+        let values = {}
+        values[event.target.id] = event.target.value
+        this.setState(values)
+    }
+    editPost = (e) => {
+        debugger
+       let poop = e.target.parentNode.id
+        this.setState({
+            edit: true
+        })
+    }
+
+    editor = () => {
+
+        if (this.state.edit) {
+            return <div>
+                <input id="editInfo" onChange={this.inputChange}></input>
+                <button onClick={this.patchEdit}>Submit</button>
+            </div >
+        }
+    }
+    patch = () => {
 
     }
+
+
+
     showInsideThread = () => {
         let threadId = this.props.page
         fetch(`http://localhost:8088/posts?threadId=${threadId}`)
@@ -96,7 +126,7 @@ export default class InsideThread extends Component {
         const postList = this.state.posts
         const titleThread = this.state.info
         return <section>
-                <button onClick={this.props.backButton}>Back</button>
+            <button onClick={this.props.backButton}>Back</button>
             <div>
                 <div id="threadBox">
                     {titleThread.map(thread =>
@@ -105,10 +135,11 @@ export default class InsideThread extends Component {
             </div>
             <div>
                 {postList.map(post =>
-                    <PostCard key={post.id} post={post} />)}
+                    <PostCard activeUser={this.props.activeUser} editPost={this.editPost} key={post.id} post={post} />)}
             </div>
             <button onClick={this.createPost}>Post</button>
             {this.postForm()}
+            {this.editor()}
         </section>
     }
 }

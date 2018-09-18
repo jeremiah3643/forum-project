@@ -111,6 +111,14 @@
       "threadId": "4",
       "timeStamp": 1536698948301,
       "id": 11
+    },
+    {
+      "message": "hello!",
+      "postAuthorName": "jack",
+      "postAuthorId": 2,
+      "threadId": "4",
+      "timeStamp": 1536868389192,
+      "id": 12
     }
   ]
 }
