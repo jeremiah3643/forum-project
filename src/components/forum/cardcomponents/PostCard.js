@@ -5,7 +5,7 @@ export default class PostCard extends Component {
     state = {
 
     }
-    editForm = (postId) => { 
+    editForm = (postId) => {
         if (this.props.edit && parseInt(this.props.editId) === postId) {
             return <div>
                 <input id="editInfo" onChange={this.props.inputChange} placeholder={this.props.editText}></input>
@@ -16,14 +16,21 @@ export default class PostCard extends Component {
             return null
         }
     }
-
+    editorButton = () => {
+        if (this.props.edit) {
+            return <button onClick={this.props.editPost}>Back</button>
+        }
+        else {
+            return <button onClick={this.props.editPost}>Edit</button>
+        }
+    }
 
 
     ownerPost = () => {
         return (<div key={this.props.post.id} id={this.props.post.id}>
             <p id={"post--" + this.props.post.id}>{this.props.post.message}</p>
             <footer>{this.props.post.postAuthorName}</footer>
-            <button onClick={this.props.editPost}>Edit</button>
+            {this.editorButton()}
             {this.editForm(this.props.post.id)}
         </div >)
     }

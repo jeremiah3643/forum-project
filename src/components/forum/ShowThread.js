@@ -89,7 +89,10 @@ export default class ShowThread extends Component {
             )
     }
     createThread = (e) => {
-        this.setState({ newThread: true })
+        if (this.state.newThread) {
+            this.setState({ newThread: false })
+        }
+        else { this.setState({ newThread: true }) }
     }
     threadForm = () => {
         if (this.state.newThread === true) {
@@ -120,6 +123,15 @@ export default class ShowThread extends Component {
         })
         this.displayThread();
     }
+    buttonThread = () => {
+        if (this.state.newThread) {
+            return <button onClick={this.createThread}>Back</button>
+        }
+        else {
+            return <button onClick={this.createThread}>Start A Thread!</button>
+        }
+    }
+
     render() {
 
         const newThreads = this.state.threads
@@ -129,7 +141,7 @@ export default class ShowThread extends Component {
             }
             else if (this.state.dataLoaded) {
                 return <div id="threadBox">
-                    <button onClick={this.createThread}>Start A Thread!</button>
+                    {this.buttonThread()}
                     {this.threadForm()}
                     {newThreads.map(thread =>
                         <ThreadCard key={thread.id} thread={thread} activeUser={this.props.activeUser} newThread={this.state.newThread} enterThread={this.enterThread} />)}
