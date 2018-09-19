@@ -12,7 +12,8 @@ export default class InsideThread extends Component {
         date: new Date(),
         edit: false,
         editInfo: "",
-        editId:""
+        editText: "",
+        editId: ""
     }
     inputChange = (event) => {
         let values = {}
@@ -20,25 +21,36 @@ export default class InsideThread extends Component {
         this.setState(values)
     }
     editPost = (e) => {
-        debugger
-       let poop = e.target.parentNode.id
-        this.setState({
-            edit: true
-        })
-    }
-
-    editor = () => {
-
+        let editId = e.target.parentNode.id
+        let postText = document.getElementById(`post--${editId}`).textContent
         if (this.state.edit) {
-            return <div>
-                <input id="editInfo" onChange={this.inputChange}></input>
-                <button onClick={this.patchEdit}>Submit</button>
-            </div >
+            this.setState({ edit: false })
+        }
+        else {
+            this.setState({
+                edit: true,
+                editText: postText,
+                editId: editId
+            })
         }
     }
-    patch = () => {
 
+    patchEdit = () => {
+        let editInfo = this.state.editInfo
+        let editId = this.state.editId
+        let patch = {
+            "message": editInfo
+        }
+        fetch(`http://localhost:8088/posts/${editId}`, {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(patch)
+        })
+            .then(this.setState({ edit: false }))
     }
+
 
 
 
@@ -104,7 +116,10 @@ export default class InsideThread extends Component {
         this.setState(stateToChange)
     }
     createPost = (e) => {
-        this.setState({ newPost: true })
+        if (this.state.newPost) {
+            this.setState({ newPost: false })
+        }
+        else { this.setState({ newPost: true }) }
     }
     componentDidMount() {
         this.timerID = setInterval(
@@ -130,16 +145,18 @@ export default class InsideThread extends Component {
             <div>
                 <div id="threadBox">
                     {titleThread.map(thread =>
-                        <ThreadTitle key={thread.id} thread={thread} />)}
+                        <ThreadTitle edit={this.state.edit} key={thread.id} thread={thread} />)}
+
                 </div>
+
             </div>
             <div>
                 {postList.map(post =>
-                    <PostCard activeUser={this.props.activeUser} editPost={this.editPost} key={post.id} post={post} />)}
+                    <PostCard patchEdit={this.patchEdit} activeUser={this.props.activeUser} editText={this.state.editText} edit={this.state.edit} inputChange={this.inputChange} editId={this.state.editId} editPost={this.editPost} key={post.id} post={post} />)}
             </div>
             <button onClick={this.createPost}>Post</button>
             {this.postForm()}
-            {this.editor()}
+
         </section>
     }
 }

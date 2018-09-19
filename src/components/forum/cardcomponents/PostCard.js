@@ -2,18 +2,30 @@ import React, { Component } from 'react';
 
 export default class PostCard extends Component {
 
+    state = {
 
-
-
+    }
+    editForm = (postId) => { 
+        if (this.props.edit && parseInt(this.props.editId) === postId) {
+            return <div>
+                <input id="editInfo" onChange={this.props.inputChange} placeholder={this.props.editText}></input>
+                <button onClick={this.props.patchEdit}>Submit</button>
+            </div >
+        }
+        else {
+            return null
+        }
+    }
 
 
 
     ownerPost = () => {
-        return <div key={this.props.post.id} id={this.props.post.id}>
-            <p id="post--${this.props.post.id}">{this.props.post.message}</p>
+        return (<div key={this.props.post.id} id={this.props.post.id}>
+            <p id={"post--" + this.props.post.id}>{this.props.post.message}</p>
             <footer>{this.props.post.postAuthorName}</footer>
             <button onClick={this.props.editPost}>Edit</button>
-        </div>
+            {this.editForm(this.props.post.id)}
+        </div >)
     }
     regularPost = () => {
 
@@ -25,18 +37,21 @@ export default class PostCard extends Component {
     postDecider = () => {
 
         if (this.props.activeUser === this.props.post.postAuthorId) {
-            return this.ownerPost()
+            return <div>{this.ownerPost()}</div>
         }
         else {
-            return this.regularPost()
+            return <div>{this.regularPost()}</div>
         }
     }
 
 
 
     render() {
+        const decider = this.postDecider()
         return (
-            this.postDecider()
+            <div>
+                {decider}
+            </div>
         )
     }
 }

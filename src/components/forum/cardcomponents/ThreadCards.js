@@ -18,7 +18,7 @@ export default class ThreadCard extends Component {
             <a href="#" onClick={this.props.enterThread}>{this.props.thread.title}</a>
             <p>{this.props.thread.message}</p>
             <footer>Author: {this.props.thread.threadAuthorName}</footer>
-            <button onClick={this.props.editThread}>Edit</button>
+            {/* <button onClick={this.props.editThread}>Edit</button> */}
         </div>
 
     }
