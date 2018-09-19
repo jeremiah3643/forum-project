@@ -5,7 +5,6 @@ export default class HomePage extends Component {
         user: "",
         activeUsername: ""
     }
-
     loaded = function () {
         if (this.state.user === "") {
             let info = JSON.parse(sessionStorage.getItem("userInfo"))
@@ -13,7 +12,6 @@ export default class HomePage extends Component {
             const upper = lower.charAt(0).toUpperCase() + lower.substr(1);
             return <div>
                 <h2 className="welcomeTag">{`Welcome ${upper}`}</h2>
-
             </div>
         }
         else if (this.state.user !== null) {
@@ -21,14 +19,9 @@ export default class HomePage extends Component {
             const upper = lower.charAt(0).toUpperCase() + lower.substr(1);
             return <div>
                 <h2 className="welcomeTag">{`Welcome ${upper}`}</h2>
-
             </div>
         }
     }.bind(this)
-
-
-
-
     render() {
         return (
             <div>

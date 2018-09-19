@@ -6,7 +6,7 @@ import Navbar from './components/navbar/Navbar';
 import Register from './components/register/register';
 import Forum from './components/forum/Forum';
 
-class App extends Component {
+export default class App extends Component {
   state = {
     activeUser: "",
     currentView: "",
@@ -30,7 +30,6 @@ class App extends Component {
     // Click event triggered switching view
     if (e.hasOwnProperty("target")) {
       view = e.target.id.split("__")[1];
-
       // View switch manually triggered by passing in string
     } else {
       view = e;
@@ -43,14 +42,11 @@ class App extends Component {
       sessionStorage.removeItem("userInfo")
       this.showView("login");
     }
-
     // Update state to correct view will be rendered
     this.setState({
       currentView: view
     });
   }.bind(this);
-
-
   onLoad = () => {
     let user = JSON.parse(sessionStorage.getItem("userInfo"))
     if (user !== null) {
@@ -75,10 +71,6 @@ class App extends Component {
         <Login showView={this.showView} setActiveUser={this.setActiverUser} activeUser={this.state.activeUser} currentView={this.state.currentView} />
       )
     }
-
-
-
-
     else if (this.state.currentView === "homepage") {
       return (
         <HomePage currentView={this.state.currentView} activeUsername={this.state.activeUsername} />
@@ -102,10 +94,7 @@ class App extends Component {
     else if (sessionStorage.getItem("userInfo")) {
       return <HomePage currentView={this.state.currentView} />
     }
-
-
   }
-
   render() {
     return (
       <div>
@@ -115,5 +104,3 @@ class App extends Component {
     )
   }
 }
-
-export default App;
