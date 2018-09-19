@@ -20,23 +20,16 @@ export default class ThreadCard extends Component {
             <footer>Author: {this.props.thread.threadAuthorName}</footer>
             {/* <button onClick={this.props.editThread}>Edit</button> */}
         </div>
-
     }
-
     cardMaker = () => {
-
         if (this.props.activeUser === this.props.thread.threadAuthorId) {
             return this.ownerThread()
         }
         else {
             return this.regularThread()
         }
-
     }
-
-
     render() {
-
         return (
             this.cardMaker()
         )

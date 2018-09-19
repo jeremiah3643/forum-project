@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 
 export default class Register extends Component {
-
     state = {
         registerEmail: "",
         registerPassword: "",
-        registerUsername:""
+        registerUsername: ""
     }
-
     registerChange = (event) => {
         let values = {}
         values[event.target.id] = event.target.value
@@ -41,9 +39,7 @@ export default class Register extends Component {
                         )
                 }
             })
-
     }
-
     render() {
         return (
             <div>

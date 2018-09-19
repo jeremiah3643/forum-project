@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 
 export default class PostCard extends Component {
-
-    state = {
-
-    }
     editForm = (postId) => {
+        // eslint-disable-next-line
         if (this.props.edit && parseInt(this.props.editId) === postId) {
             return <div>
                 <input id="editInfo" onChange={this.props.inputChange} placeholder={this.props.editText}></input>
@@ -24,10 +21,9 @@ export default class PostCard extends Component {
             return <button onClick={this.props.editPost}>Edit</button>
         }
     }
-
-
     ownerPost = () => {
         return (<div key={this.props.post.id} id={this.props.post.id}>
+            <p>{this.props.post.oldMessage}</p>
             <p id={"post--" + this.props.post.id}>{this.props.post.message}</p>
             <footer>{this.props.post.postAuthorName}</footer>
             {this.editorButton()}
@@ -35,14 +31,13 @@ export default class PostCard extends Component {
         </div >)
     }
     regularPost = () => {
-
         return <div key={this.props.post.id} id={this.props.post.id}>
+            <p>{this.props.post.oldMessage}</p>
             <p>{this.props.post.message}</p>
             <footer>{this.props.post.postAuthorName}</footer>
         </div>
     }
     postDecider = () => {
-
         if (this.props.activeUser === this.props.post.postAuthorId) {
             return <div>{this.ownerPost()}</div>
         }
@@ -50,9 +45,6 @@ export default class PostCard extends Component {
             return <div>{this.regularPost()}</div>
         }
     }
-
-
-
     render() {
         const decider = this.postDecider()
         return (

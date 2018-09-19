@@ -97,12 +97,13 @@
       "id": 9
     },
     {
-      "message": "testing to see if form changes!",
+      "message": "testing",
       "postAuthorName": "jeremiah",
       "postAuthorId": 1,
       "threadId": "4",
       "timeStamp": 1536698938572,
-      "id": 10
+      "id": 10,
+      "oldMessage": "testing again"
     },
     {
       "message": "It worked!",

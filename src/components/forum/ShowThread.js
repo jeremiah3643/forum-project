@@ -3,8 +3,6 @@ import ThreadCard from './cardcomponents/ThreadCards';
 import InsideThread from './InsideThread';
 
 export default class ShowThread extends Component {
-
-
     state = {
         threadPost: false,
         threads: [],
@@ -16,7 +14,6 @@ export default class ShowThread extends Component {
         newThread: false,
         date: new Date()
     }
-
     componentDidMount() {
         this.timerID = setInterval(
             () => this.tick(),
@@ -24,11 +21,7 @@ export default class ShowThread extends Component {
         );
         this.displayThread()
     }
-
-
-
     loadThreads = () => {
-
         return fetch(`http://localhost:8088/threads`)
             .then(r => r.json())
             .then(loadedThreads => {
@@ -37,16 +30,13 @@ export default class ShowThread extends Component {
             }
             )
     }
-
     enterThread = (e) => {
-        console.log(e.target.parentNode.id)
         let pagination = e.target.parentNode.id
         this.setState({
             page: pagination,
             clicked: true
         })
     }
-
     displayThread = () => {
         this.loadThreads()
             .then(thread => {
@@ -54,7 +44,6 @@ export default class ShowThread extends Component {
                     threads: thread,
                     dataLoaded: true
                 })
-
             })
     }
     postUpload = (e) => {
@@ -80,7 +69,6 @@ export default class ShowThread extends Component {
             }
             )
             .then(() => {
-
                 alert("Successful Post!")
                 this.setState({
                     newThread: false,
@@ -108,7 +96,6 @@ export default class ShowThread extends Component {
             clicked: false
         })
     }
-
     threadChange = (event) => {
         let stateToChange = {}
         stateToChange[event.target.id] = event.target.value
@@ -131,10 +118,9 @@ export default class ShowThread extends Component {
             return <button onClick={this.createThread}>Start A Thread!</button>
         }
     }
-
     render() {
-
         const newThreads = this.state.threads
+        // eslint-disable-next-line
         {
             if (this.state.clicked) {
                 return <div><InsideThread activeUser={this.props.activeUser} backButton={this.backButton} userId={this.props.userId} page={this.state.page} /></div>

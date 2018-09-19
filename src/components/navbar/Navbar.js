@@ -43,7 +43,6 @@ export default class Navbar extends Component {
             return <a></a>
         }
     }
-
     LoginorLogoff = () => {
         if (this.props.activeUser === "" || this.props.currentView === "logout") {
             return <a onClick={this.login} href="login">Login</a>
@@ -52,14 +51,6 @@ export default class Navbar extends Component {
             return <a onClick={this.logout} href="logout">Logout</a>
         }
     }
-    // currentUserChecker = () => {
-    //     let info = JSON.parse(sessionStorage.getItem("userInfo"))
-    //     if (this.props.activeUser === null && sessionStorage.getItem("userInfo")) {
-    //         this.setState({
-    //             activeUser: info.userId
-    //         })
-    //     }
-    // }
     render() {
         return (
             <nav id="navbar">

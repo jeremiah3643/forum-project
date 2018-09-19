@@ -39,7 +39,8 @@ export default class InsideThread extends Component {
         let editInfo = this.state.editInfo
         let editId = this.state.editId
         let patch = {
-            "message": editInfo
+            "message": editInfo,
+            "oldMessage": this.state.editText
         }
         fetch(`http://localhost:8088/posts/${editId}`, {
             method: 'PATCH',
@@ -48,7 +49,9 @@ export default class InsideThread extends Component {
             },
             body: JSON.stringify(patch)
         })
-            .then(this.setState({ edit: false }))
+            .then(this.setState({
+                edit: false,
+            }))
     }
 
 
