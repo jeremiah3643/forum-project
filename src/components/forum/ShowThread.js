@@ -3,21 +3,20 @@ import ThreadCard from './cardcomponents/ThreadCards';
 import InsideThread from './InsideThread';
 
 export default class ShowThread extends Component {
-    constructor(props) {
-        super(props)
 
-        this.state = {
-            threadPost: false,
-            threads: [],
-            dataLoaded: false,
-            page: "",
-            clicked: false,
-            threadTitle: "",
-            threadMessage: "",
-            newThread: false,
-            date: new Date()
-        }
+
+    state = {
+        threadPost: false,
+        threads: [],
+        dataLoaded: false,
+        page: "",
+        clicked: false,
+        threadTitle: "",
+        threadMessage: "",
+        newThread: false,
+        date: new Date()
     }
+
     componentDidMount() {
         this.timerID = setInterval(
             () => this.tick(),
@@ -73,7 +72,7 @@ export default class ShowThread extends Component {
                         title: this.state.threadTitle,
                         message: this.state.threadMessage,
                         threadAuthorName: response[0].username,
-                        threadAuthorId: this.state.userId,
+                        threadAuthorId: user,
                         timeStamp: Date.now(),
 
                     })
@@ -90,7 +89,10 @@ export default class ShowThread extends Component {
             )
     }
     createThread = (e) => {
-        this.setState({ newThread: true })
+        if (this.state.newThread) {
+            this.setState({ newThread: false })
+        }
+        else { this.setState({ newThread: true }) }
     }
     threadForm = () => {
         if (this.state.newThread === true) {
@@ -101,8 +103,7 @@ export default class ShowThread extends Component {
             </section>
         }
     }
-    backButton = (e) => {
-        
+    backButton = () => {
         this.setState({
             clicked: false
         })
@@ -122,19 +123,28 @@ export default class ShowThread extends Component {
         })
         this.displayThread();
     }
+    buttonThread = () => {
+        if (this.state.newThread) {
+            return <button onClick={this.createThread}>Back</button>
+        }
+        else {
+            return <button onClick={this.createThread}>Start A Thread!</button>
+        }
+    }
+
     render() {
 
         const newThreads = this.state.threads
         {
             if (this.state.clicked) {
-                return <div><InsideThread clicked={this.state.clicked} backbutton={this.backButton} userId={this.props.userId} page={this.state.page} /></div>
+                return <div><InsideThread activeUser={this.props.activeUser} backButton={this.backButton} userId={this.props.userId} page={this.state.page} /></div>
             }
             else if (this.state.dataLoaded) {
                 return <div id="threadBox">
-                    <button onClick={this.createThread}>Start A Thread!</button>
+                    {this.buttonThread()}
                     {this.threadForm()}
                     {newThreads.map(thread =>
-                        <ThreadCard key={thread.id} thread={thread} newThread={this.state.newThread} enterThread={this.enterThread} />)}
+                        <ThreadCard key={thread.id} thread={thread} activeUser={this.props.activeUser} newThread={this.state.newThread} enterThread={this.enterThread} />)}
                 </div>
             }
             else {

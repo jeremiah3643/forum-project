@@ -96,7 +96,7 @@ class App extends Component {
     }
     else if (this.state.currentView === "forum") {
       return (
-        <Forum showView={this.showView} currentView={this.state.currentView} />
+        <Forum showView={this.showView} activeUser={this.state.activeUser} currentView={this.state.currentView} />
       )
     }
     else if (sessionStorage.getItem("userInfo")) {

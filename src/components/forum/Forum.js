@@ -35,7 +35,7 @@ export default class Forum extends Component {
         return (
             <div>
                 
-                <section><ShowThread showView={this.props.showView} userId={this.state.userId} currentView={this.props.currentView} /></section>
+                <section><ShowThread activeUser={this.props.activeUser} showView={this.props.showView} userId={this.state.userId} currentView={this.props.currentView} /></section>
 
             </div>
         )

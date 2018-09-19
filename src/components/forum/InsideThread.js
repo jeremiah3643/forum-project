@@ -9,9 +9,51 @@ export default class InsideThread extends Component {
         info: [],
         postMessage: "",
         newPost: false,
-        date: new Date()
-
+        date: new Date(),
+        edit: false,
+        editInfo: "",
+        editText: "",
+        editId: ""
     }
+    inputChange = (event) => {
+        let values = {}
+        values[event.target.id] = event.target.value
+        this.setState(values)
+    }
+    editPost = (e) => {
+        let editId = e.target.parentNode.id
+        let postText = document.getElementById(`post--${editId}`).textContent
+        if (this.state.edit) {
+            this.setState({ edit: false })
+        }
+        else {
+            this.setState({
+                edit: true,
+                editText: postText,
+                editId: editId
+            })
+        }
+    }
+
+    patchEdit = () => {
+        let editInfo = this.state.editInfo
+        let editId = this.state.editId
+        let patch = {
+            "message": editInfo
+        }
+        fetch(`http://localhost:8088/posts/${editId}`, {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(patch)
+        })
+            .then(this.setState({ edit: false }))
+    }
+
+
+
+
     showInsideThread = () => {
         let threadId = this.props.page
         fetch(`http://localhost:8088/posts?threadId=${threadId}`)
@@ -74,7 +116,10 @@ export default class InsideThread extends Component {
         this.setState(stateToChange)
     }
     createPost = (e) => {
-        this.setState({ newPost: true })
+        if (this.state.newPost) {
+            this.setState({ newPost: false })
+        }
+        else { this.setState({ newPost: true }) }
     }
     componentDidMount() {
         this.timerID = setInterval(
@@ -93,23 +138,25 @@ export default class InsideThread extends Component {
         clearInterval(this.timerID);
     }
     render() {
-
         const postList = this.state.posts
         const titleThread = this.state.info
         return <section>
+            <button onClick={this.props.backButton}>Back</button>
             <div>
-                <button onClick={this.props.backButton}>Back</button>
                 <div id="threadBox">
                     {titleThread.map(thread =>
-                        <ThreadTitle key={thread.id} thread={thread} />)}
+                        <ThreadTitle edit={this.state.edit} key={thread.id} thread={thread} />)}
+
                 </div>
+
             </div>
             <div>
                 {postList.map(post =>
-                    <PostCard key={post.id} post={post} />)}
+                    <PostCard patchEdit={this.patchEdit} activeUser={this.props.activeUser} editText={this.state.editText} edit={this.state.edit} inputChange={this.inputChange} editId={this.state.editId} editPost={this.editPost} key={post.id} post={post} />)}
             </div>
             <button onClick={this.createPost}>Post</button>
             {this.postForm()}
+
         </section>
     }
 }
