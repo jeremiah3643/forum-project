@@ -34,8 +34,10 @@ export default class Navbar extends Component {
     }
     handleHome = () => {
         if (this.props.activeUser !== null && sessionStorage.getItem("userInfo") !== null) {
-            return <div><a onClick={this.homeLink} href="home">Home</a>
-                <a onClick={this.forumLink} href="forum">Forum</a>
+            return <div id="navbar" className="ui three item menu">
+                <a className="item" onClick={this.homeLink} href="home">Home</a>
+                <a className="item" onClick={this.forumLink} href="forum">Forum</a>
+                <this.LoginorLogoff />
             </div>
         }
         else {
@@ -45,19 +47,20 @@ export default class Navbar extends Component {
     }
     LoginorLogoff = () => {
         if (this.props.activeUser === "" || this.props.currentView === "logout") {
-            return <a onClick={this.login} href="login">Login</a>
+            return <a className="item" onClick={this.login} href="login">Login</a>
         }
         else {
-            return <a onClick={this.logout} href="logout">Logout</a>
+            return <a className="item" onClick={this.logout} href="logout">Logout</a>
         }
     }
     render() {
         return (
-            <nav id="navbar">
+            <div>
+                {/* <div id="navbar" className="ui three item menu"></div> */}
                 {/* {this.currentUserChecker()} */}
-                <this.handleHome />
-                <this.LoginorLogoff />
-            </nav>
+                < this.handleHome />
+                {/* <this.LoginorLogoff /> */}
+            </div>
         )
     }
 }

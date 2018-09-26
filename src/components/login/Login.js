@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./login.css"
 
 export default class Login extends Component {
     constructor(props) {
@@ -39,13 +40,15 @@ export default class Login extends Component {
     }
     render() {
         return (
-            <div>
-                <form>
-                    <label>Welcome! Please Log In.</label>
-                    <input onChange={this.inputChange} id="email" placeholder="Email"></input>
-                    <input onChange={this.inputChange} type="password" id="password" placeholder="Password"></input>
-                    <button onClick={this.handleLogin} >Log In</button>
-                    <button onClick={this.registerPage}>Register</button>
+            <div className="loginForm">
+                <form className="ui form">
+                    <div className="field">
+                        <label className="ui label">Welcome! Please Log In.</label>
+                        <input className="ui input focus" onChange={this.inputChange} id="email" placeholder="Email"></input>
+                        <input className="ui input focus" onChange={this.inputChange} type="password" id="password" placeholder="Password"></input>
+                        <button className="ui primary button" onClick={this.handleLogin} >Log In</button>
+                        <button className="ui button" onClick={this.registerPage}>Register</button>
+                    </div>
                 </form>
             </div>
         )

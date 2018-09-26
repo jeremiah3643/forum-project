@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ThreadCard from './cardcomponents/ThreadCards';
 import InsideThread from './InsideThread';
-
+import './threadForm.css'
 export default class ShowThread extends Component {
     state = {
         threadPost: false,
@@ -84,10 +84,14 @@ export default class ShowThread extends Component {
     }
     threadForm = () => {
         if (this.state.newThread === true) {
-            return <section>
-                <input onChange={this.threadChange} id="threadTitle" placeholder="Title"></input>
-                <textarea onChange={this.threadChange} id="threadMessage" placeholder="Message"></textarea>
-                <button onClick={this.postUpload}>Submit</button>
+            return <section className="threadForm">
+                <div className="ui form">
+                    <div className="field">
+                        <input onChange={this.threadChange} id="threadTitle" placeholder="Title"></input>
+                        <textarea onChange={this.threadChange} id="threadMessage" placeholder="Message"></textarea>
+                        <button className="ui button" onClick={this.postUpload}>Submit</button>
+                    </div>
+                </div>
             </section>
         }
     }

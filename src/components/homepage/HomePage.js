@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './homepage.css';
 export default class HomePage extends Component {
     state = {
         user: "",

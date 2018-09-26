@@ -5,9 +5,11 @@ export default class PostCard extends Component {
         // eslint-disable-next-line
         if (this.props.edit && parseInt(this.props.editId) === postId) {
             return <div>
-                <input id="editInfo" onChange={this.props.inputChange} placeholder={this.props.editText}></input>
-                <button onClick={this.props.patchEdit}>Submit</button>
-            </div >
+                <div>
+                    <input id="editInfo" onChange={this.props.inputChange} placeholder={this.props.editText}></input>
+                    <button onClick={this.props.patchEdit}>Submit</button>
+                </div >
+            </div>
         }
         else {
             return null
@@ -15,27 +17,41 @@ export default class PostCard extends Component {
     }
     editorButton = () => {
         if (this.props.edit) {
-            return <button onClick={this.props.editPost}>Back</button>
+            return <button className="ui button" onClick={this.props.editPost}>Back</button>
         }
         else {
-            return <button onClick={this.props.editPost}>Edit</button>
+            return <button className="ui button" onClick={this.props.editPost}>Edit</button>
+        }
+    }
+    previous = () => {
+        if (this.props.post.oldMessage === "") {
+            return null
+        }
+        else {
+            return <div className="meta">
+                <p className="meta">Edited:{this.props.post.oldMessage}</p>
+            </div>
         }
     }
     ownerPost = () => {
-        return (<div key={this.props.post.id} id={this.props.post.id}>
-            <p>{this.props.post.oldMessage}</p>
-            <p id={"post--" + this.props.post.id}>{this.props.post.message}</p>
-            <footer>{this.props.post.postAuthorName}</footer>
-            {this.editorButton()}
-            {this.editForm(this.props.post.id)}
+        return (<div className="ui cards centered blue">
+            <div className="card" key={this.props.post.id} id={this.props.post.id}>
+                {this.previous()}
+                <p className="header" id={"post--" + this.props.post.id}>{this.props.post.message}</p>
+                <footer className="meta">Author: {this.props.post.postAuthorName}</footer>
+                {this.editorButton()}
+                {this.editForm(this.props.post.id)}
+            </div>
         </div >)
     }
     regularPost = () => {
-        return <div key={this.props.post.id} id={this.props.post.id}>
-            <p>{this.props.post.oldMessage}</p>
-            <p>{this.props.post.message}</p>
-            <footer>{this.props.post.postAuthorName}</footer>
-        </div>
+        return <div className="ui cards centered red">
+            <div key={this.props.post.id} id={this.props.post.id}>
+                {this.previous()}
+                <p>{this.props.post.message}</p>
+                <footer>Author: {this.props.post.postAuthorName}</footer>
+            </div>
+        </div >
     }
     postDecider = () => {
         if (this.props.activeUser === this.props.post.postAuthorId) {
