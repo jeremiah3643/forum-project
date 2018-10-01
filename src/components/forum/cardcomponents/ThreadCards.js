@@ -2,7 +2,26 @@ import React, { Component } from 'react';
 import './cardcomponents.css';
 
 export default class ThreadCard extends Component {
-    followDecider = () => {
+    state = {
+        loaded: false
+    }
+
+
+    followDecider = (threadId, followId) => {
+        let followthreads = this.props.followed
+        let threads = this.props.thread
+        const followthreadId = followthreads.find(follow => follow.threadId === threadId)
+        if (followthreadId) {
+            if (threads.threadAuthorId === followId) {
+                return <div><button className="ui button" onClick={this.props.unfollowButton} >Unfollow</button></div>
+            }
+            else {
+                return <div><button className="ui button" onClick={this.props.followButton}>Follow</button></div>
+            }
+        }
+        else {
+            return <div><button className="ui button" onClick={this.props.followButton}>Follow</button></div>
+        }
 
     }
     fetchFollow = () => {
@@ -35,13 +54,15 @@ export default class ThreadCard extends Component {
     }
 
     regularThread = () => {
+
         return <div className="ui cards centered blue" key={this.props.thread.id} id={this.props.thread.id}>
             <div className="regularThread card" >
                 <div key={this.props.thread.id} id={this.props.thread.id} className="content">
                     <h2 className="header" onClick={this.props.enterThread}>{this.props.thread.title}</h2>
                     <p className="description">{this.props.thread.message}</p>
                     <footer className="meta">Author: {this.props.thread.threadAuthorName}</footer>
-                    {this.fetchFollow()}
+                    {/* {this.fetchFollow()} */}
+                    {this.followDecider(this.props.thread.id, this.props.thread.threadAuthorId)}
                 </div>
             </div>
         </div>
@@ -53,7 +74,8 @@ export default class ThreadCard extends Component {
                     <h2 className="header" onClick={this.props.enterThread}>{this.props.thread.title}</h2>
                     <p className="description">{this.props.thread.message}</p>
                     <footer className="meta">Author: {this.props.thread.threadAuthorName}</footer>
-                    {this.fetchFollow()}
+                    {/* {this.fetchFollow()} */}
+                    {this.followDecider(this.props.thread.id, this.props.thread.threadAuthorId)}
                 </div>
             </div>
         </div>
@@ -66,15 +88,27 @@ export default class ThreadCard extends Component {
             return this.regularThread()
         }
     }
-    componentDidMount() {
-        this.cardMaker()
+    // componentDidMount() {
+    //     debugger
+    //     if (!this.props.followed.length) {
+    //         this.setState = ({ loaded: true })
+    //         this.cardMaker()
+    //     }
+    // }
+    dataChecker = () => {
+        if (this.props.followed.length !== 0) {
+            return this.cardMaker()
+        }
+        else {
+            return <div>Loading.....</div>
+        }
     }
-
 
     render() {
         return (
 
-            this.cardMaker()
+            this.dataChecker()
+
 
         )
     }

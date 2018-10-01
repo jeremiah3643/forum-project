@@ -104,20 +104,25 @@
       "id": 16
     },
     {
-      "message": "hello!",
+      "message": "test!",
       "postAuthorName": "jeremiah",
       "postAuthorId": 1,
       "threadId": "6",
       "timeStamp": 1538342309517,
-      "oldMessage": "",
+      "oldMessage": "hello!",
       "id": 17
     }
   ],
   "followThreads": [
     {
-      "threadId": 6,
+      "threadId": 5,
       "followId": 1,
       "id": 1
+    },
+    {
+      "threadId": 4,
+      "followId": 1,
+      "id": 2
     }
   ]
 }

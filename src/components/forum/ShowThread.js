@@ -142,9 +142,9 @@ handleForce(){
         stateToChange[event.target.id] = event.target.value
         this.setState(stateToChange)
     }
-    componentWillUnmount() {
-        clearInterval(this.timerID);
-    }
+    // componentWillUnmount() {
+    //     clearInterval(this.timerID);
+    // }
     tick() {
         this.setState({
             date: new Date()
