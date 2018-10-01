@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ThreadCard from './cardcomponents/ThreadCards';
 import InsideThread from './InsideThread';
-
+import './threadForm.css'
 export default class ShowThread extends Component {
     state = {
         threadPost: false,
@@ -12,7 +12,9 @@ export default class ShowThread extends Component {
         threadTitle: "",
         threadMessage: "",
         newThread: false,
-        date: new Date()
+        date: new Date(),
+        followed: [],
+        change: false
     }
     componentDidMount() {
         this.timerID = setInterval(
@@ -20,6 +22,7 @@ export default class ShowThread extends Component {
             5000
         );
         this.displayThread()
+        this.followLoad()
     }
     loadThreads = () => {
         return fetch(`http://localhost:8088/threads`)
@@ -42,10 +45,44 @@ export default class ShowThread extends Component {
             .then(thread => {
                 this.setState({
                     threads: thread,
-                    dataLoaded: true
+                    dataLoaded: true,
+
                 })
             })
     }
+    followButton = (e) => {
+        let following = parseInt(e.target.parentNode.id)
+        let userinfo = this.props.activeUser
+        return fetch(`http://localhost:8088/followThreads?threadId=${following}`)
+            .then(r => r.json())
+            .then(result => {
+                if (result.length) {
+                    alert("Already Following")
+                }
+                else {
+                    let newFollow = {
+                        "threadId": following,
+                        "followId": userinfo
+                    }
+                    fetch(`http://localhost:8088/followThreads`, {
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(newFollow)
+                    })
+                        .then(() => {
+                            this.handleForce()
+                        }
+                        )
+                }
+            }
+            )
+    }
+handleForce(){
+    this.forceUpdate()
+}
+
     postUpload = (e) => {
         let user = this.props.userId
         fetch(`http://localhost:8088/users?id=${user}`)
@@ -84,10 +121,14 @@ export default class ShowThread extends Component {
     }
     threadForm = () => {
         if (this.state.newThread === true) {
-            return <section>
-                <input onChange={this.threadChange} id="threadTitle" placeholder="Title"></input>
-                <textarea onChange={this.threadChange} id="threadMessage" placeholder="Message"></textarea>
-                <button onClick={this.postUpload}>Submit</button>
+            return <section className="threadForm">
+                <div className="ui form">
+                    <div className="field">
+                        <input onChange={this.threadChange} id="threadTitle" placeholder="Title"></input>
+                        <textarea onChange={this.threadChange} id="threadMessage" placeholder="Message"></textarea>
+                        <button className="ui button" onClick={this.postUpload}>Submit</button>
+                    </div>
+                </div>
             </section>
         }
     }
@@ -112,11 +153,32 @@ export default class ShowThread extends Component {
     }
     buttonThread = () => {
         if (this.state.newThread) {
-            return <button onClick={this.createThread}>Back</button>
+            return <button className="ui button" onClick={this.createThread}>Back</button>
         }
         else {
-            return <button onClick={this.createThread}>Start A Thread!</button>
+            return <button className="ui button" onClick={this.createThread}>Start A Thread!</button>
         }
+    }
+    followLoad = () => {
+        return fetch(`http://localhost:8088/followThreads`)
+            .then(r => r.json())
+            .then(result => {
+                this.setState({ followed: result })
+            })
+    }
+    unfollowButton = (e) => {
+        let deleteId = parseInt(e.target.parentNode.id)
+        return fetch(`http://localhost:8088/followThreads?threadId=${deleteId}`)
+            .then(r => r.json())
+            .then(result => {
+                fetch(`http://localhost:8088/followThreads/${result[0].id}`, {
+                    method: 'DELETE',
+                })
+                    .then(() => {
+                        this.handleForce()
+                    }
+                    )
+            })
     }
     render() {
         const newThreads = this.state.threads
@@ -130,7 +192,7 @@ export default class ShowThread extends Component {
                     {this.buttonThread()}
                     {this.threadForm()}
                     {newThreads.map(thread =>
-                        <ThreadCard key={thread.id} thread={thread} activeUser={this.props.activeUser} newThread={this.state.newThread} enterThread={this.enterThread} />)}
+                        <ThreadCard followed={this.state.followed} unfollowButton={this.unfollowButton} followButton={this.followButton} key={thread.id} thread={thread} activeUser={this.props.activeUser} newThread={this.state.newThread} enterThread={this.enterThread} />)}
                 </div>
             }
             else {
