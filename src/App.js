@@ -10,7 +10,8 @@ export default class App extends Component {
   state = {
     activeUser: "",
     currentView: "",
-    activeUsername: ""
+    activeUsername: "",
+    followedThreads: []
   }
   setActiverUser = (user, username) => {
     if (user === null) {
@@ -47,16 +48,30 @@ export default class App extends Component {
       currentView: view
     });
   }.bind(this);
+  followedThreads = () => {
+    let followId = this.state.activeUser
+    return fetch(`http://localhost:8088/followThreads/?followId=${followId}`)
+      .then(r => r.json())
+      .then(result => {
+        this.setState({
+          followedThreads: result
+        })
+      })
+  }
   onLoad = () => {
     let user = JSON.parse(sessionStorage.getItem("userInfo"))
     if (user !== null) {
       this.setState({
         activeUser: user.userId,
         currentView: user.currentView
+      }, () => {
+        this.followedThreads()
       })
+
       this.changeView()
     }
   }
+
   componentDidMount() {
     this.onLoad()
   }
@@ -73,7 +88,7 @@ export default class App extends Component {
     }
     else if (this.state.currentView === "homepage") {
       return (
-        <HomePage currentView={this.state.currentView} activeUsername={this.state.activeUsername} />
+        <HomePage followedThreads={this.state.followedThreads} currentView={this.state.currentView} activeUser={this.state.activeUser} activeUsername={this.state.activeUsername} />
       )
     }
     else if (this.state.currentView === "login") {
@@ -92,7 +107,7 @@ export default class App extends Component {
       )
     }
     else if (sessionStorage.getItem("userInfo")) {
-      return <HomePage currentView={this.state.currentView} />
+      return <HomePage activeUser={this.state.activeUser} followedThreads={this.state.followedThreads} currentView={this.state.currentView} />
     }
   }
   render() {

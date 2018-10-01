@@ -46,9 +46,9 @@ export default class PostCard extends Component {
     }
     regularPost = () => {
         return <div className="ui cards centered red">
-            <div key={this.props.post.id} id={this.props.post.id}>
+            <div className="card" key={this.props.post.id} id={this.props.post.id}>
                 {this.previous()}
-                <p>{this.props.post.message}</p>
+                <p className="description">{this.props.post.message}</p>
                 <footer>Author: {this.props.post.postAuthorName}</footer>
             </div>
         </div >

@@ -41,87 +41,6 @@
   ],
   "posts": [
     {
-      "message": "testing as a post under thread",
-      "postAuthorName": "jeremiah",
-      "threadAuthorId": 1,
-      "threadId": "1",
-      "timeStamp": 1535653097466,
-      "id": 1,
-      "oldMessage":""
-    },
-    {
-      "message": "hello!",
-      "postAuthorName": "jeremiah",
-      "threadAuthorId": 1,
-      "threadId": "2",
-      "timeStamp": 1535653148163,
-      "id": 2,
-      "oldMessage":""
-    },
-    {
-      "message": "testing clock",
-      "postAuthorName": "jeremiah",
-      "threadAuthorId": 1,
-      "threadId": "2",
-      "timeStamp": 1535653206856,
-      "id": 3,
-      "oldMessage":""
-    },
-    {
-      "message": "testing clock again",
-      "postAuthorName": "jeremiah",
-      "threadAuthorId": 1,
-      "threadId": "2",
-      "timeStamp": 1535653247977,
-      "id": 4,
-      "oldMessage":""
-    },
-    {
-      "message": "testing reload",
-      "postAuthorName": "jeremiah",
-      "threadAuthorId": 1,
-      "threadId": "2",
-      "timeStamp": 1535653291556,
-      "id": 5,
-      "oldMessage":""
-    },
-    {
-      "message": "testing author\n",
-      "postAuthorName": "jeremiah",
-      "postAuthorId": 1,
-      "threadId": "2",
-      "timeStamp": 1535653360200,
-      "id": 6,
-      "oldMessage":""
-    },
-    {
-      "message": "hello!",
-      "postAuthorName": "jeremiah",
-      "postAuthorId": 1,
-      "threadId": "2",
-      "timeStamp": 1535653428850,
-      "id": 7,
-      "oldMessage":""
-    },
-    {
-      "message": "hello",
-      "postAuthorName": "jeremiah",
-      "postAuthorId": 1,
-      "threadId": "2",
-      "timeStamp": 1535653484490,
-      "id": 8,
-      "oldMessage":""
-    },
-    {
-      "message": "hello!",
-      "postAuthorName": "jeremiah",
-      "postAuthorId": 1,
-      "threadId": "1",
-      "timeStamp": 1536697262321,
-      "id": 9,
-      "oldMessage":""
-    },
-    {
       "message": "testing",
       "postAuthorName": "jeremiah",
       "postAuthorId": 1,
@@ -137,7 +56,7 @@
       "threadId": "4",
       "timeStamp": 1536698948301,
       "id": 11,
-      "oldMessage":""
+      "oldMessage": ""
     },
     {
       "message": "hello!",
@@ -146,7 +65,7 @@
       "threadId": "4",
       "timeStamp": 1536868389192,
       "id": 12,
-      "oldMessage":""
+      "oldMessage": ""
     },
     {
       "message": "hello!",
@@ -155,7 +74,7 @@
       "threadId": "5",
       "timeStamp": 1537455853580,
       "id": 13,
-      "oldMessage":""
+      "oldMessage": ""
     },
     {
       "message": "dsfsfdsf",
@@ -167,13 +86,38 @@
       "oldMessage": "fsgdfgfdg"
     },
     {
-      "message": "fsgfdgfdgdg",
+      "message": "Testing new edit decider.",
       "postAuthorName": "jeremiah",
       "postAuthorId": 1,
       "threadId": "6",
       "timeStamp": 1537994877451,
       "id": 15,
-      "oldMessage":""
+      "oldMessage": "fsgfdgfdgdg"
+    },
+    {
+      "message": "edit",
+      "postAuthorName": "jeremiah",
+      "postAuthorId": 1,
+      "threadId": "6",
+      "timeStamp": 1537999469546,
+      "oldMessage": "Testing edit",
+      "id": 16
+    },
+    {
+      "message": "hello!",
+      "postAuthorName": "jeremiah",
+      "postAuthorId": 1,
+      "threadId": "6",
+      "timeStamp": 1538342309517,
+      "oldMessage": "",
+      "id": 17
+    }
+  ],
+  "followThreads": [
+    {
+      "threadId": 6,
+      "followId": 1,
+      "id": 1
     }
   ]
 }

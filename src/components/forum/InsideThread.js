@@ -77,11 +77,19 @@ export default class InsideThread extends Component {
                     })
             )
     }
+    postDecider = () => {
+        if (this.state.newPost) {
+            return <button onClick={this.createPost} className="ui button">Back</button>
+        }
+        else {
+            return <button onClick={this.createPost} className="ui button">Post</button>
+        }
+    }
     postForm = () => {
         if (this.state.newPost) {
-            return <section>
-                <textarea onChange={this.postChange} id="postMessage" placeholder="Message"></textarea>
-                <button onClick={this.postUpload}>Submit</button>
+            return <section className="ui form">
+                <textarea  className="field" onChange={this.postChange} id="postMessage" placeholder="Message"></textarea>
+                <button className="ui button" onClick={this.postUpload}>Submit</button>
             </section>
         }
     }
@@ -145,7 +153,7 @@ export default class InsideThread extends Component {
         const postList = this.state.posts
         const titleThread = this.state.info
         return <section>
-            <button onClick={this.props.backButton}>Back</button>
+            <button className="ui button" onClick={this.props.backButton}>Back</button>
             <div>
                 <div id="threadBox">
                     {titleThread.map(thread =>
@@ -158,7 +166,7 @@ export default class InsideThread extends Component {
                 {postList.map(post =>
                     <PostCard patchEdit={this.patchEdit} activeUser={this.props.activeUser} editText={this.state.editText} edit={this.state.edit} inputChange={this.inputChange} editId={this.state.editId} editPost={this.editPost} key={post.id} post={post} />)}
             </div>
-            <button onClick={this.createPost}>Post</button>
+            {this.postDecider()}
             {this.postForm()}
 
         </section>
