@@ -111,6 +111,9 @@ export default class InsideThread extends Component {
                         threadId: this.props.page,
                         timeStamp: Date.now(),
                         oldMessage: "",
+                        threadAuthorName:this.state.info[0].threadAuthorName,
+                        threadTitle:this.state.info[0].title,
+                        threadMessage:this.state.info[0].message
 
                     })
                 })

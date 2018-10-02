@@ -51,9 +51,11 @@ export default class ShowThread extends Component {
             })
     }
     followButton = (e) => {
-        let following = parseInt(e.target.parentNode.id)
+        let newId = null
+        let following = e.target.id
+            newId = parseInt(following.split("--")[1]);
         let userinfo = this.props.activeUser
-        return fetch(`http://localhost:8088/followThreads?threadId=${following}`)
+        return fetch(`http://localhost:8088/followThreads?threadId=${newId}`)
             .then(r => r.json())
             .then(result => {
                 if (result.length) {
@@ -61,7 +63,7 @@ export default class ShowThread extends Component {
                 }
                 else {
                     let newFollow = {
-                        "threadId": following,
+                        "threadId": newId,
                         "followId": userinfo
                     }
                     fetch(`http://localhost:8088/followThreads`, {
@@ -142,9 +144,9 @@ handleForce(){
         stateToChange[event.target.id] = event.target.value
         this.setState(stateToChange)
     }
-    // componentWillUnmount() {
-    //     clearInterval(this.timerID);
-    // }
+    componentWillUnmount() {
+        clearInterval(this.timerID);
+    }
     tick() {
         this.setState({
             date: new Date()
@@ -167,7 +169,9 @@ handleForce(){
             })
     }
     unfollowButton = (e) => {
-        let deleteId = parseInt(e.target.parentNode.id)
+        let deleteId = null
+        let following = e.target.id
+            deleteId = parseInt(following.split("--")[1]);
         return fetch(`http://localhost:8088/followThreads?threadId=${deleteId}`)
             .then(r => r.json())
             .then(result => {

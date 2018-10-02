@@ -15,8 +15,20 @@ export default class FollowCard extends Component {
 
 
     }
+titleLoader=()=>{
+    debugger
+   return <div id="threadTitle" className="ui cards left black" key={this.props.thread.id}>
+    <div className="card">
+        <h2 className="header">Title:  {this.props.thread.threadTitle}</h2>
+        <h3 className="description">{this.props.thread.threadMessage}</h3>
+        <footer className="meta" >Author: {this.props.thread.threadAuthorName}</footer>
+        <div>
+           { this.followMaker()}
+        </div>
+    </div>
+</div>
 
-
+}
 
 
 

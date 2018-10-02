@@ -40,8 +40,6 @@ export default class HomePage extends Component {
                         })
                     })
             }
-
-            console.log(threads)
         }
     }
 
