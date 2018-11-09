@@ -53,9 +53,6 @@ export default class Register extends Component {
                     if (user.length) {
                         alert("Email already in use!")
                     }
-                    else if (tester1.length || tester2.length || tester3.length) {
-                        alert("Please Fill Out Boxes!")
-                    }
                     else {
                         fetch(`https://serverforum.herokuapp.com/users`, {
                             method: 'POST',
@@ -78,11 +75,6 @@ export default class Register extends Component {
                 })
         }
     }
-    errorChecker = () => {
-        if (this.state.errors.length) {
-            return <FormError />
-        }
-    }
     render() {
         return (
             <div>
@@ -92,15 +84,12 @@ export default class Register extends Component {
                         <div className="field">
                             <label className="ui label">Email
                         <input className="ui input focus" onChange={this.registerChange} id="registerEmail"></input>
-                                {this.errorChecker(this.state.errors[1])}
                             </label>
                             <label className="ui label">Username
                         <input className="ui input focus" onChange={this.registerChange} id="registerUsername"></input>
-                                {this.errorChecker(this.state.errors[0])}
                             </label>
                             <label className="ui label" >Password
-                        <input className="ui input focus" onChange={this.registerChange} id="registerPassword"></input>
-                                {this.errorChecker(this.state.errors[4])}
+                        <input className="ui input focus" onChange={this.registerChange} id="registerPassword"></input>                             
                             </label>
                             <button className="ui primary button" onClick={this.handleRegister}>Register</button>
                         </div>
