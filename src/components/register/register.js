@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import "./register.css"
-import FormError from './RegisterErrors';
 
 export default class Register extends Component {
     state = {
