@@ -15,7 +15,7 @@ export default class HomePage extends Component {
     followedThreads = () => {
 
         let followId = JSON.parse(sessionStorage.getItem("userInfo"))
-        return fetch(`http://localhost:8088/followThreads/?followId=${followId.userId}`)
+        return fetch(`https://serverforum.herokuapp.com/followThreads/?followId=${followId.userId}`)
             .then(r => r.json())
             .then(result => {
                 let followedThreads = result
@@ -31,7 +31,7 @@ export default class HomePage extends Component {
         if (followedThreads !== "") {
             for (let i = 0; i < followedThreads.length; i++) {
                 const thread = followedThreads[i];
-                return fetch(`http://localhost:8088/posts?threadId=${thread.threadId}`)
+                return fetch(`https://serverforum.herokuapp.com/posts?threadId=${thread.threadId}`)
                     .then(r => r.json())
                     .then(result => {
                         threads = result

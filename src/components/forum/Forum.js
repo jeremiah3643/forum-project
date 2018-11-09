@@ -13,7 +13,7 @@ export default class Forum extends Component {
         }
         else {
             let info = JSON.parse(sessionStorage.getItem("userInfo"))
-            fetch(`http://localhost:8088/users/${info.userId}`)
+            fetch(`https://serverforum.herokuapp.com/users/${info.userId}`)
                 .then(r => r.json()).then(response => {
                     this.setState({
                         userId: response.id

@@ -25,7 +25,7 @@ export default class ShowThread extends Component {
         this.followLoad()
     }
     loadThreads = () => {
-        return fetch(`http://localhost:8088/threads`)
+        return fetch(`https://serverforum.herokuapp.com/threads`)
             .then(r => r.json())
             .then(loadedThreads => {
                 let thread = loadedThreads.reverse()
@@ -55,7 +55,7 @@ export default class ShowThread extends Component {
         let following = e.target.id
             newId = parseInt(following.split("--")[1]);
         let userinfo = this.props.activeUser
-        return fetch(`http://localhost:8088/followThreads?threadId=${newId}`)
+        return fetch(`https://serverforum.herokuapp.com/followThreads?threadId=${newId}`)
             .then(r => r.json())
             .then(result => {
                 if (result.length) {
@@ -66,7 +66,7 @@ export default class ShowThread extends Component {
                         "threadId": newId,
                         "followId": userinfo
                     }
-                    fetch(`http://localhost:8088/followThreads`, {
+                    fetch(`https://serverforum.herokuapp.com/followThreads`, {
                         method: 'POST',
                         headers: {
                             "Content-Type": "application/json"
@@ -87,10 +87,10 @@ handleForce(){
 
     postUpload = (e) => {
         let user = this.props.userId
-        fetch(`http://localhost:8088/users?id=${user}`)
+        fetch(`https://serverforum.herokuapp.com/users?id=${user}`)
             .then(result => result.json())
             .then(response => {
-                fetch(`http://localhost:8088/threads`, {
+                fetch(`https://serverforum.herokuapp.com/threads`, {
                     method: 'POST',
                     headers: {
                         Accept: "application/json",
@@ -162,7 +162,7 @@ handleForce(){
         }
     }
     followLoad = () => {
-        return fetch(`http://localhost:8088/followThreads`)
+        return fetch(`https://serverforum.herokuapp.com/followThreads`)
             .then(r => r.json())
             .then(result => {
                 this.setState({ followed: result })
@@ -172,10 +172,10 @@ handleForce(){
         let deleteId = null
         let following = e.target.id
             deleteId = parseInt(following.split("--")[1]);
-        return fetch(`http://localhost:8088/followThreads?threadId=${deleteId}`)
+        return fetch(`https://serverforum.herokuapp.com/followThreads?threadId=${deleteId}`)
             .then(r => r.json())
             .then(result => {
-                fetch(`http://localhost:8088/followThreads/${result[0].id}`, {
+                fetch(`https://serverforum.herokuapp.com/followThreads/${result[0].id}`, {
                     method: 'DELETE',
                 })
                     .then(() => {

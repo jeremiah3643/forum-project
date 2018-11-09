@@ -19,7 +19,7 @@ export default class Login extends Component {
     }
     handleLogin = (e) => {
         e.preventDefault();
-        fetch(`http://localhost:8088/users?email=${this.state.email}&password=${this.state.password}`)
+        fetch(`https://serverforum.herokuapp.com/users?email=${this.state.email}&password=${this.state.password}`)
             .then(r => r.json())
             .then(user => {
                 if (user.length) {

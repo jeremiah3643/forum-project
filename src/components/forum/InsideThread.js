@@ -42,7 +42,7 @@ export default class InsideThread extends Component {
             "message": editInfo,
             "oldMessage": this.state.editText
         }
-        fetch(`http://localhost:8088/posts/${editId}`, {
+        fetch(`https://serverforum.herokuapp.com/posts/${editId}`, {
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json"
@@ -59,7 +59,7 @@ export default class InsideThread extends Component {
 
     showInsideThread = () => {
         let threadId = this.props.page
-        fetch(`http://localhost:8088/posts?threadId=${threadId}`)
+        fetch(`https://serverforum.herokuapp.com/posts?threadId=${threadId}`)
             .then(r => r.json())
             .then(results => {
                 this.setState({
@@ -68,7 +68,7 @@ export default class InsideThread extends Component {
                 })
             })
             .then(
-                fetch(`http://localhost:8088/threads?id=${this.props.page}`)
+                fetch(`https://serverforum.herokuapp.com/threads?id=${this.props.page}`)
                     .then(j => j.json())
                     .then(response => {
                         this.setState({
@@ -95,10 +95,10 @@ export default class InsideThread extends Component {
     }
     postUpload = (e) => {
         let user = this.props.userId
-        fetch(`http://localhost:8088/users?id=${user}`)
+        fetch(`https://serverforum.herokuapp.com/users?id=${user}`)
             .then(result => result.json())
             .then(response => {
-                fetch(`http://localhost:8088/posts`, {
+                fetch(`https://serverforum.herokuapp.com/posts`, {
                     method: 'POST',
                     headers: {
                         Accept: "application/json",

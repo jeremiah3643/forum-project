@@ -50,7 +50,7 @@ export default class App extends Component {
   }.bind(this);
   followedThreads = () => {
     let followId = this.state.activeUser
-    return fetch(`http://localhost:8088/followThreads/?followId=${followId}`)
+    return fetch(`https://serverforum.herokuapp.com/followThreads/?followId=${followId}`)
       .then(r => r.json())
       .then(result => {
         this.setState({

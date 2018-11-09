@@ -46,7 +46,7 @@ export default class Register extends Component {
             alert(errors)
         }
         else {
-            fetch(`http://localhost:8088/users?email=${this.state.registerEmail}`)
+            fetch(`https://serverforum.herokuapp.com/users?email=${this.state.registerEmail}`)
                 .then(r => r.json())
                 .then(user => {
 
@@ -57,7 +57,7 @@ export default class Register extends Component {
                         alert("Please Fill Out Boxes!")
                     }
                     else {
-                        fetch(`http://localhost:8088/users`, {
+                        fetch(`https://serverforum.herokuapp.com/users`, {
                             method: 'POST',
                             headers: {
                                 Accept: "application/json",
