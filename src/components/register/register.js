@@ -13,8 +13,8 @@ export default class Register extends Component {
         values[event.target.id] = event.target.value
         this.setState(values)
     }
-    }
-    handleRegister = () => { {
+    
+    handleRegister = () => { 
             fetch(`https://serverforum.herokuapp.com/users?email=${this.state.registerEmail}`)
                 .then(r => r.json())
                 .then(user => {
@@ -43,7 +43,7 @@ export default class Register extends Component {
                     }
                 })
         }
-    }
+    
     render() {
         return (
             <div>
@@ -65,6 +65,7 @@ export default class Register extends Component {
                     </form>
                 </div>
             </div>
-        )
-    }
+      
+                    )
+}
 }
