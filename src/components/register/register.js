@@ -18,7 +18,6 @@ export default class Register extends Component {
             fetch(`https://serverforum.herokuapp.com/users?email=${this.state.registerEmail}`)
                 .then(r => r.json())
                 .then(user => {
-
                     if (user.length) {
                         alert("Email already in use!")
                     }
@@ -29,6 +28,7 @@ export default class Register extends Component {
                                 Accept: "application/json",
                                 "Content-Type": "application/json"
                             },
+                            mode: "no-cors",
                             body: JSON.stringify({
                                 email: this.state.registerEmail,
                                 password: this.state.registerPassword,
