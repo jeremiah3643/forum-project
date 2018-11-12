@@ -23,8 +23,7 @@ export default class Login extends Component {
         {
             headers: {
                 "Content-Type": "application/json"
-            },
-            mode:"no-cors",
+            }
         }
         )
             .then(r => r.json())
