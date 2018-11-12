@@ -16,7 +16,7 @@ export default class Register extends Component {
     handleRegister = () => { 
         const Bluebird = require('bluebird')
     fetch.Promise = Bluebird;
-            fetch(`https://forum-project-c7d72.firebaseapp.com/api/users?email=${this.state.registerEmail}.json`)
+            fetch(`https://forum-project-c7d72.firebaseapp.com/api/users?email=${this.state.registerEmail}`)
                 .then(r => r.json())
                 .then(user => {
                     if (user.length) {

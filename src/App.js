@@ -50,7 +50,7 @@ export default class App extends Component {
   }.bind(this);
   followedThreads = () => {
     let followId = this.state.activeUser
-    return fetch(`https://forum-project-c7d72.firebaseio.com/followThreads/?followId=${followId}.json`)
+    return fetch(`https://forum-project-c7d72.firebaseio.com/api/followThreads/?followId=${followId}`)
       .then(r => r.json())
       .then(result => {
         this.setState({
