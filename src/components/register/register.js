@@ -16,14 +16,14 @@ export default class Register extends Component {
     handleRegister = () => { 
         const Bluebird = require('bluebird')
     fetch.Promise = Bluebird;
-            fetch(`https://serverforum.herokuapp.com/users?email=${this.state.registerEmail}`)
+            fetch(`https://forum-project-c7d72.firebaseio.com/users?email=${this.state.registerEmail}.json`)
                 .then(r => r.json())
                 .then(user => {
                     if (user.length) {
                         alert("Email already in use!")
                     }
                     else {
-                        fetch(`https://serverforum.herokuapp.com/users`, {
+                        fetch(`https://forum-project-c7d72.firebaseio.com/users.json`, {
                             method: 'POST',
                             headers: {
                                 "Content-Type": "application/json"

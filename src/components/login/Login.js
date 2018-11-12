@@ -19,7 +19,7 @@ export default class Login extends Component {
     }
     handleLogin = (e) => {
         e.preventDefault();
-        fetch(`https://serverforum.herokuapp.com/users?email=${this.state.email}&password=${this.state.password}`)
+        fetch(`https://forum-project-c7d72.firebaseio.com/users?email=${this.state.email}&password=${this.state.password}.json`)
             .then(r => r.json())
             .then(user => {
                 if (user.length) {
