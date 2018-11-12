@@ -21,7 +21,10 @@ export default class Login extends Component {
         e.preventDefault();
         fetch(`https://forum-project-c7d72.firebaseio.com/users?email=${this.state.email}&password=${this.state.password}.json`,
         {
-            mode:"no-cors"
+            headers: {
+                "Content-Type": "application/json"
+            },
+            mode:"no-cors",
         }
         )
             .then(r => r.json())
