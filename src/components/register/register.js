@@ -28,6 +28,7 @@ export default class Register extends Component {
                                 Accept: "application/json",
                                 "Content-Type": "application/json"
                             },
+                            mode: "no-cors",
                             body: JSON.stringify({
                                 email: this.state.registerEmail,
                                 password: this.state.registerPassword,
