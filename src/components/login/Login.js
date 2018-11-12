@@ -19,7 +19,11 @@ export default class Login extends Component {
     }
     handleLogin = (e) => {
         e.preventDefault();
-        fetch(`https://forum-project-c7d72.firebaseio.com/users?email=${this.state.email}&password=${this.state.password}.json`)
+        fetch(`https://forum-project-c7d72.firebaseio.com/users?email=${this.state.email}&password=${this.state.password}.json`,
+        {
+            mode:"no-cors"
+        }
+        )
             .then(r => r.json())
             .then(user => {
                 if (user.length) {
