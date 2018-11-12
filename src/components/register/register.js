@@ -38,9 +38,10 @@ export default class Register extends Component {
                         )
                             .then(
                                 alert("You have successfully registered!"),
+                                )
+                                .then(
                                 this.props.showView("login")
-                            )
-                    }
+                                )}
                 })
         }
     
