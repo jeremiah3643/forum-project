@@ -13,8 +13,9 @@ export default class Register extends Component {
         values[event.target.id] = event.target.value
         this.setState(values)
     }
-    
     handleRegister = () => { 
+        const Bluebird = require('bluebird')
+    fetch.Promise = Bluebird;
             fetch(`https://serverforum.herokuapp.com/users?email=${this.state.registerEmail}`)
                 .then(r => r.json())
                 .then(user => {
@@ -25,7 +26,6 @@ export default class Register extends Component {
                         fetch(`https://serverforum.herokuapp.com/users`, {
                             method: 'POST',
                             headers: {
-                                Accept: "application/json",
                                 "Content-Type": "application/json"
                             },
                             mode: "no-cors",
