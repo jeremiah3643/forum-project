@@ -13,7 +13,7 @@ export default class Forum extends Component {
         }
         else {
             let info = JSON.parse(sessionStorage.getItem("userInfo"))
-            fetch(`https://forum-project-c7d72.firebaseio.com/users/${info.userId}.json`)
+            fetch(`https://forum-project-c7d72.firebaseapp.com/api/users/${info.userId}.json`)
                 .then(r => r.json()).then(response => {
                     this.setState({
                         userId: response.id

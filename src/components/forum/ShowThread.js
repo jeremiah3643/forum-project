@@ -25,7 +25,7 @@ export default class ShowThread extends Component {
         this.followLoad()
     }
     loadThreads = () => {
-        return fetch(`https://forum-project-c7d72.firebaseio.com/threads.json`)
+        return fetch(`https://forum-project-c7d72.firebaseapp.com/api/threads.json`)
             .then(r => r.json())
             .then(loadedThreads => {
                 let thread = loadedThreads.reverse()
@@ -55,7 +55,7 @@ export default class ShowThread extends Component {
         let following = e.target.id
             newId = parseInt(following.split("--")[1]);
         let userinfo = this.props.activeUser
-        return fetch(`https://forum-project-c7d72.firebaseio.com/followThreads?threadId=${newId}.json`)
+        return fetch(`https://forum-project-c7d72.firebaseapp.com/api/followThreads?threadId=${newId}.json`)
             .then(r => r.json())
             .then(result => {
                 if (result.length) {
@@ -66,7 +66,7 @@ export default class ShowThread extends Component {
                         "threadId": newId,
                         "followId": userinfo
                     }
-                    fetch(`https://forum-project-c7d72.firebaseio.com/followThreads.json`, {
+                    fetch(`https://forum-project-c7d72.firebaseapp.com/api/followThreads.json`, {
                         method: 'POST',
                         headers: {
                             "Content-Type": "application/json"
@@ -87,10 +87,10 @@ handleForce(){
 
     postUpload = (e) => {
         let user = this.props.userId
-        fetch(`https://forum-project-c7d72.firebaseio.com/users?id=${user}.json`)
+        fetch(`https://forum-project-c7d72.firebaseapp.com/api/users?id=${user}.json`)
             .then(result => result.json())
             .then(response => {
-                fetch(`https://forum-project-c7d72.firebaseio.com/threads.json`, {
+                fetch(`https://forum-project-c7d72.firebaseapp.com/api/threads.json`, {
                     method: 'POST',
                     headers: {
                         Accept: "application/json",
@@ -162,7 +162,7 @@ handleForce(){
         }
     }
     followLoad = () => {
-        return fetch(`https://forum-project-c7d72.firebaseio.com/followThreads.json`)
+        return fetch(`https://forum-project-c7d72.firebaseapp.com/api/followThreads.json`)
             .then(r => r.json())
             .then(result => {
                 this.setState({ followed: result })
@@ -172,10 +172,10 @@ handleForce(){
         let deleteId = null
         let following = e.target.id
             deleteId = parseInt(following.split("--")[1]);
-        return fetch(`https://forum-project-c7d72.firebaseio.com/followThreads?threadId=${deleteId}.json`)
+        return fetch(`https://forum-project-c7d72.firebaseapp.com/api/followThreads?threadId=${deleteId}.json`)
             .then(r => r.json())
             .then(result => {
-                fetch(`https://forum-project-c7d72.firebaseio.com/followThreads/${result[0].id}.json`, {
+                fetch(`https://forum-project-c7d72.firebaseapp.com/api/followThreads/${result[0].id}.json`, {
                     method: 'DELETE',
                 })
                     .then(() => {
